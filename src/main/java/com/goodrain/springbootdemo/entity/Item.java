@@ -1,35 +1,32 @@
 package com.goodrain.springbootdemo.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "sock")
+
+//@Entity
+//@Table(name = "sock")
 public class Item {
-    @Id
-    @Column(name = "sock_id")
-    private String id;
-    @Column
+   // @Id
+    //@Column(name = "sock_id")
+    private String sock_id;
+   // @Column
     private String name;
-    @Column
+    //@Column
     private String description;
-    @Column
+    //@Column
     private double price;
-    @Column
+    //@Column
     private int count;
-    @Column(name = "image_url_1")
-    private String img1;
-    @Column(name = "image_url_2")
-    private String img2;
+    //@Column(name = "image_url_1")
+    private String image_url_1;
+    //@Column(name = "image_url_2")
+    private String image_url_2;
 
-    public String getId() {
-        return id;
+    public String getSock_id() {
+        return sock_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSock_id(String sock_id) {
+        this.sock_id = sock_id;
     }
 
     public String getName() {
@@ -64,19 +61,19 @@ public class Item {
         this.count = count;
     }
 
-    public String getImg1() {
-        return img1;
+    public String getImage_url_1() {
+        return image_url_1;
     }
 
-    public void setImg1(String img1) {
-        this.img1 = img1;
+    public void setImage_url_1(String image_url_1) {
+        this.image_url_1 = image_url_1;
     }
 
-    public String getImg2() {
-        return img2;
+    public String getImage_url_2() {
+        return image_url_2;
     }
 
-    public void setImg2(String img2) {
-        this.img2 = img2;
+    public void setImage_url_2(String image_url_2) {
+        this.image_url_2 = image_url_2;
     }
 }

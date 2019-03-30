@@ -1,10 +1,8 @@
-package com.goodrain.springbootdemo.repositoriy;
-
-import com.goodrain.springbootdemo.entity.Item;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
-
-public interface ItemRepository extends JpaRepository<Item,String> {
-    List<Item> findAll();
-}
+//package com.goodrain.springbootdemo.repositoriy;
+//
+//import com.goodrain.springbootdemo.entity.Item;
+//import org.springframework.data.jpa.repository.JpaRepository;
+//
+//public interface ItemRepository extends JpaRepository<Item,String> {
+//
+//}
