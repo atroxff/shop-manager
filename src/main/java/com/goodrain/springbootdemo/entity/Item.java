@@ -2,23 +2,20 @@ package com.goodrain.springbootdemo.entity;
 
 
 
-//@Entity
-//@Table(name = "sock")
 public class Item {
-   // @Id
-    //@Column(name = "sock_id")
+
     private String sock_id;
-   // @Column
+
     private String name;
-    //@Column
+
     private String description;
-    //@Column
+
     private double price;
-    //@Column
+
     private int count;
-    //@Column(name = "image_url_1")
+
     private String image_url_1;
-    //@Column(name = "image_url_2")
+
     private String image_url_2;
 
     public String getSock_id() {
