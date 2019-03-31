@@ -4,7 +4,7 @@
 function deleteProduct(pid) {
     console.log("删除商品：" + pid);
     if (confirm("您确认要删除该商品么？（删除后商品所有信息都将消失）")) {
-        location.href=ContextPath+"/admin/product/delete.do?pid="+pid;
+        location.href="./product/delete.do?pid="+pid;
     }
 };
 
@@ -20,7 +20,7 @@ function searchProduct(){
         return;
     }
     console.log("searchKey:"+key+"searchtype:"+type);
-    location.href=ContextPath+"/admin/product.do?key="+key+"&type="+type+"&pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
+    location.href="./product.do?key="+key+"&type="+type+"&pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
 };
 //上一页
 function pageUp() {
@@ -31,9 +31,9 @@ function pageUp() {
     var pagesizeStr = "";
     //console.log("searchKey:"+key+"searchtype:"+type+"pagenumStr:"+pagenumStr);
     if(key==""){
-        location.href=ContextPath+"/admin/product.do?pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
+        location.href="./product.do?pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
     }else{
-        location.href=ContextPath+"/admin/product.do?key="+key+"&type="+type+"&pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
+        location.href="./product.do?key="+key+"&type="+type+"&pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
     }
 };
 //下一页
@@ -45,9 +45,9 @@ function pageDown(totalpage) {
     var pagesizeStr = "";
     //console.log("searchKey:"+key+"searchtype:"+type+"pagenumStr:"+pagenumStr);
     if(key==""){
-        location.href=ContextPath+"/admin/product.do?pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
+        location.href="./product.do?pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
     }else{
-        location.href=ContextPath+"/admin/product.do?key="+key+"&type="+type+"&pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
+        location.href="./product.do?key="+key+"&type="+type+"&pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
     }
 };
 
@@ -62,5 +62,5 @@ function toPageNum(totalpage) {
     var pagesizeStr = "";
 
     //console.log("searchKey:"+key+"searchtype:"+type+"pagenumStr:"+pagenumStr);
-    location.href=ContextPath+"/admin/product.do?pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
+    location.href="./product.do?pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
 };

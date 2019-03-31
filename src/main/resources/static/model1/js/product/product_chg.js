@@ -2,44 +2,34 @@
 function validateAndSubmit(){
     //校验信息置空
     document.getElementById("pname_tip").innerHTML="";
-    document.getElementById("categoryid_tip").innerHTML="";
-    document.getElementById("shop_price_tip").innerHTML="";
-    document.getElementById("market_price_tip").innerHTML="";
-    document.getElementById("is_hot_tip").innerHTML="";
-    document.getElementById("pflag_tip").innerHTML="";
-    //document.getElementById("pimage_pic_tip").innerHTML="";
+    document.getElementById("price_tip").innerHTML="";
+    document.getElementById("count_tip").innerHTML="";
+    document.getElementById("pimage_pic_tip").innerHTML="";
+    document.getElementById("pimage_pic2_tip").innerHTML="";
+
+
     //校验非空 pname categoryid shop_price market_price is_hot pimage
-    var pname=document.getElementById("pname").value;
-    var categoryid=document.getElementById("categoryid").value;
-    var shop_price=document.getElementById("shop_price").value;
-    var market_price=document.getElementById("market_price").value;
-    var pflag=document.getElementById("pflag").value;
-    var is_hot=document.getElementById("is_hot").value;
-    //var pimage=document.getElementById("pimage_pic").value;
-    console.log(pname+" "+categoryid+" "+shop_price+" "+market_price+" "+is_hot+" ");
-    if(pname==""){
+    var name=document.getElementById("name").value;
+    var price=document.getElementById("price").value;
+    var count=document.getElementById("count").value;
+    var image_1=document.getElementById("image_1").value;
+    var image_2=document.getElementById("image_2").value;
+
+    console.log(name+" "+price+" "+count+" "+image_1+" "+image_2);
+    if(name==""){
         document.getElementById("pname_tip").innerHTML="商品名称不能为空";
     }
-    if(categoryid==""){
-        document.getElementById("categoryid_tip").innerHTML="商品分类不能为空";
+    if(price==""){
+        document.getElementById("price_tip").innerHTML="商品价格不能为空";
     }
-    if(shop_price==""){
-        document.getElementById("shop_price_tip").innerHTML="商城价不能为空";
-    }
-    if(market_price==""){
-        document.getElementById("market_price_tip").innerHTML="市场价不能为空";
-    }
-    if(is_hot==""){
-        document.getElementById("is_hot_tip").innerHTML="热门标志不能为空";
-    }
-    if(pflag==""){
-        document.getElementById("pflag_tip").innerHTML="下架标志不能为空";
-    }
-    // if(pimage==""){
-    //     document.getElementById("pimage_pic_tip").innerHTML="商品图片不能为空";
-    // }
     //修改商品时可以不选择图片  使用原图片
-    if(pname==""||categoryid==""||shop_price==""||market_price==""||is_hot==""||pflag==""){
+    // if(image_1==""){
+    //     document.getElementById("pimage_pic1_tip").innerHTML="商品图片1不能为空";
+    // }
+    // if(image_2==""){
+    //     document.getElementById("pimage_pic2_tip").innerHTML="商品图片2不能为空";
+    // }
+    if(name==""||price==""){
         console.log("校验失败");
         return;
     }
@@ -47,12 +37,13 @@ function validateAndSubmit(){
     //校验数据格式
     var reg=/^[-\+]?\d+(\.\d+)?$/;
     var flag= true;
-    if(!reg.test(shop_price)){
-        document.getElementById("shop_price_tip").innerHTML="价格格式不正确";
+    if(!reg.test(price)){
+        document.getElementById("price_tip").innerHTML="价格格式不正确";
         flag=false;
     }
-    if(!reg.test(market_price)){
-        document.getElementById("market_price_tip").innerHTML="价格格式不正确";
+    var reg1=/^[0-9]+$/;
+    if(!reg1.test(count)){
+        document.getElementById("count_tip").innerHTML="库存格式不正确";
         flag=false;
     }
     if(!flag){
@@ -65,4 +56,13 @@ function validateAndSubmit(){
     //表单提交
     //document.getElementById("form1").submit();
     $("#form1").submit();
+};
+
+//删除商品
+function deleteProduct() {
+    var id=document.getElementById("sock_id").value;
+    console.log("删除商品：" + id);
+    if (confirm("您确认要删除该商品么？（删除后商品所有信息都将消失）")) {
+        location.href="./delete.do?id="+id;
+    }
 };
