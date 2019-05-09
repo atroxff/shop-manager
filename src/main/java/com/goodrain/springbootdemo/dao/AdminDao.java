@@ -1,6 +1,8 @@
 package com.goodrain.springbootdemo.dao;
 
 import com.goodrain.springbootdemo.entity.Item;
+import com.goodrain.springbootdemo.entity.Tag;
+import com.goodrain.springbootdemo.vo.TagVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -56,6 +58,9 @@ public class AdminDao {
     public void delete(String id) {
         String sql = "delete from sock where sock_id=?";
         int row = jdbcTemplate.update(sql, id);
+
+        String sql1 = "delete from sock_tag where sock_id=?";
+        int row1 = jdbcTemplate.update(sql1, id);
     }
 
     /*根据id查找商品*/
@@ -63,11 +68,36 @@ public class AdminDao {
         String sql = "select *  from sock where sock_id=?";
         RowMapper<Item> rowMapper=new BeanPropertyRowMapper<Item>(Item.class);
         List<Item> itemList = jdbcTemplate.query(sql, rowMapper, id);
-        if(itemList!=null){
+        if(itemList!=null&&itemList.size()!=0){
             return itemList.get(0);
         }
         return null;
     }
 
+    /*根据id查找商品分类*/
+    public List<TagVo> findTagListByid(String id) {
+        String sql = "select *  from sock_tag,tag where sock_tag.tag_id=tag.tag_id and sock_tag.sock_id=?";
+        RowMapper<TagVo> rowMapper=new BeanPropertyRowMapper<TagVo>(TagVo.class);
+        List<TagVo> tagList = jdbcTemplate.query(sql, rowMapper, id);
+        return tagList;
+    }
+    /*删除商品id*/
+    public void deleteProductTag(String id, String tagid) {
+        String sql = "delete from sock_tag where sock_id=? and tag_id=?";
+        int row = jdbcTemplate.update(sql, id,tagid);
+    }
+    /*根据id查找商品没有的分类*/
+    public List<Tag> findNoTagListByid(String id) {
+        String sql = "select * from tag where tag_id not in"+
+                "(select tag_id from sock_tag where sock_id=?)";
 
+        RowMapper<Tag> rowMapper=new BeanPropertyRowMapper<Tag>(Tag.class);
+        List<Tag> tagList = jdbcTemplate.query(sql, rowMapper, id);
+        return tagList;
+    }
+
+    public void addProductTag(String id, String tagid) {
+        String sql = "insert into sock_tag value(?,?)";
+        int row = jdbcTemplate.update(sql, id,tagid);
+    }
 }

@@ -3,6 +3,8 @@ package com.goodrain.springbootdemo.service;
 import com.goodrain.springbootdemo.dao.AdminDao;
 import com.goodrain.springbootdemo.entity.Item;
 import com.goodrain.springbootdemo.entity.PageBean;
+import com.goodrain.springbootdemo.entity.Tag;
+import com.goodrain.springbootdemo.vo.TagVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,5 +62,21 @@ public class AdminService {
         return adminDao.findProductById(id);
     }
 
+    /*根据id查找商品分类标签*/
+    public List<TagVo> findTagListByid(String id) {
+        return adminDao.findTagListByid(id);
+    }
 
+    /*删除商品标签*/
+    public void deleteProductTag(String id, String tagid) {
+        adminDao.deleteProductTag(id,tagid);
+    }
+    /*根据id查找商品没有的分类标签*/
+    public List<Tag> findNoTagListByid(String id) {
+        return adminDao.findNoTagListByid(id);
+    }
+    /*添加商品标签*/
+    public void addProductTag(String id, String tagid) {
+        adminDao.addProductTag(id,tagid);
+    }
 }

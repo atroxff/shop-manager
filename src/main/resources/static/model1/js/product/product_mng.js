@@ -2,7 +2,6 @@
 
 //删除商品
 function deleteProduct(pid) {
-    console.log("删除商品：" + pid);
     if (confirm("您确认要删除该商品么？（删除后商品所有信息都将消失）")) {
         location.href="./product/delete.do?pid="+pid;
     }

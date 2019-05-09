@@ -66,3 +66,95 @@ function deleteProduct() {
         location.href="./delete.do?id="+id;
     }
 };
+
+//获取分类标签
+function getTags(){
+
+    var id=document.getElementById("sock_id").value;
+
+    /* ajax请求 添加分类*/
+    $.ajax({
+        type:'get',
+        async:false,
+        url:'./tag/list.do',
+        data:{
+            'id':id,
+        },
+        dataType: 'json',
+        success:function(data){
+
+            if(data.success){
+
+            }else{
+                console.log("获取分类标签失败：" + id);
+            }
+
+        },
+        error:function(){
+            console.log("获取分类标签失败：未知原因");
+        }
+    });
+};
+
+//删除分类标签
+function deleteThisTag(tagid){
+    var id=document.getElementById("sock_id").value;//商品id
+    var name=document.getElementById("name").value;//商品名称
+    console.log("删除商品" + name+"的"+tagid+"标签");
+    if (confirm("确认删除该标签？")) {
+        /* ajax请求 删除分类*/
+        $.ajax({
+            type:'get',
+            async:false,
+            url:'./update/deleteTag.do',
+            data:{
+                id:id,
+                tagid:tagid,
+            },
+            dataType: 'json',
+            success:function(data){
+                if(data.success){
+                    alert("删除成功！");
+                    window.location.reload();
+                }else{
+                    alert("删除失败："+data.msg);
+                }
+
+            },
+            error:function(){
+                alert("添加菜单失败：未知原因");
+            }
+        });
+    }
+};
+
+//删除添加标签
+function submit() {
+    var id = document.getElementById("sock_id").value;
+    var tagid=document.getElementById("categoryid").value;
+    console.log("商品"+id+"添加标签"+tagid);
+    /* ajax请求 添加分类*/
+    $.ajax({
+        type:'post',
+        async:false,
+        url:'../product/update/addTag.do',
+        data:{
+            id:id,
+            tagid:tagid,
+        },
+        dataType: 'json',
+        success:function(data){
+
+            if(data.success){
+                alert("添加成功！");
+                window.location.reload();
+            }else{
+                alert("添加失败："+data.msg);
+            }
+
+        },
+        error:function(){
+            alert("添加失败：未知原因");
+        }
+    });
+};

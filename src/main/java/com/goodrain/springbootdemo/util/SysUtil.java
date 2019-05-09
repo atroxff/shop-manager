@@ -1,6 +1,8 @@
 package com.goodrain.springbootdemo.util;
 
 
+import org.apache.commons.lang.StringUtils;
+
 import java.util.UUID;
 
 public class SysUtil {
@@ -19,13 +21,13 @@ public class SysUtil {
 //        return null;
 //    }
 
-//    /* String 类型的数字++ */
-//    public static String strNumAdd(String str) {
-//
-//        if (StringUtils.isNotBlank(str)) {
-//            int i = Integer.parseInt(str);
-//           return Integer.toString( ++i);
-//        }
-//        return null;
-//    }
+    /* String 类型的数字++ */
+    public static String strNumAdd(String str) {
+
+        if (StringUtils.isNotBlank(str)) {
+            int i = Integer.parseInt(str);
+           return Integer.toString( ++i);
+        }
+        return null;
+    }
 }
