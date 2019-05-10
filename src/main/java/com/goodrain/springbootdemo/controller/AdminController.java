@@ -117,8 +117,16 @@ public class AdminController {
         int currentCount = Integer.parseInt(pagesizeStr);
 
         //List<Item> productList =adminService.findAllItems();
-        PageBean pageBean = adminService.findItemsByPage(currentPage, currentCount);
+        PageBean pageBean;
+        if(key==null||key==""){//没有搜索条件
+            pageBean = adminService.findItemsByPage(currentPage, currentCount);
+        }else{
+            pageBean = adminService.findItemsByPageAndKey(currentPage, currentCount,key);
+        }
+
+
         List<Item> productList = pageBean.getList();
+        model.addAttribute("key", key);
         model.addAttribute("pagenumStr", pagenumStr);
         model.addAttribute("totalpage", pageBean.getTotalPage());
         model.addAttribute("count", pageBean.getTotalCount());

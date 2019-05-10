@@ -46,7 +46,31 @@ public class AdminService {
 
         return pageBean;
     }
+    /*条件查找*/
+    public PageBean findItemsByPageAndKey(int currentPage, int currentCount, String key) {
+        //封装一个PageBean 返回web层
+        PageBean<Item> pageBean = new PageBean<Item>();
 
+        //1、封装当前页
+        pageBean.setCurrentPage(currentPage);
+        //2、封装每页显示的条数
+        pageBean.setCurrentCount(currentCount);
+        //3、封装总条数
+        int totalCount = adminDao.countByKey(key) ;
+        pageBean.setTotalCount(totalCount);
+        //4、封装总页数
+        int totalPage = (int) Math.ceil(1.0*totalCount/currentCount);
+        pageBean.setTotalPage(totalPage);
+
+        //5、当前页显示的数据
+        // select * from product where cid=? limit ?,?
+        // 当前页与起始索引index的关系
+        int index = (currentPage-1)*currentCount;
+        List<Item> list = adminDao.findByKey(index,currentCount,key);
+        pageBean.setList(list);
+
+        return pageBean;
+    }
     /*添加商品*/
     public void saveProduct(Item product) {
         adminDao.save(product);
@@ -79,4 +103,6 @@ public class AdminService {
     public void addProductTag(String id, String tagid) {
         adminDao.addProductTag(id,tagid);
     }
+
+
 }

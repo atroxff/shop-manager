@@ -50,13 +50,13 @@
                         <a href="" th:href="@{/admin/product/add.do}" class="btn btn-success"> 添加新商品 </a>
                     </div>
                     <div class="col-md-6 ">
-                        <select id="searchType" class="custom-select mb-2 mr-sm-2 mb-sm-0" >
-                            <option selected  readonly  th:if="${type!=null}" th:value="${type}" th:text="${typeName}"  ></option>
-                            <option value="0">商品编号</option>
-                            <option value="1">商品名称</option>
-                            <option value="2">商品分类</option>
-                        </select>
-                        <input style="width:300px;height:30px;" placeholder="关键词" id="searchKey" name="searchKey" th:value="${key!=null}?${key}:''">
+                        <!--<select id="searchType" class="custom-select mb-2 mr-sm-2 mb-sm-0" >-->
+                            <!--<option selected  readonly  th:if="${type!=null}" th:value="${type}" th:text="${typeName}"  ></option>-->
+                            <!--<option value="0">商品编号</option>-->
+                            <!--<option value="1">商品名称</option>-->
+                            <!--<option value="2">商品分类</option>-->
+                        <!--</select>-->
+                        <input style="width:300px;height:30px;" placeholder="商品名关键词" id="searchKey" name="searchKey" th:value="${key!=null}?${key}:''">
                         <a  th:onclick="'javascript:searchProduct();'" class="btn btn-warning">搜索</a>
                     </div>
                     </div>

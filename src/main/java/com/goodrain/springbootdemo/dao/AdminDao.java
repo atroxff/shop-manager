@@ -29,9 +29,25 @@ public class AdminDao {
         Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
         return count;
     }
+    /*条件查询商品总数*/
+    public int countByKey(String key) {
+        String sql = "select count(*) from sock where name like '%"+key+"%'";
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
+        return count;
+    }
     /*分页查询商品*/
     public List<Item> findByPage(int index, int currentCount) {
         String sql = "select * from sock order by name asc limit ?,?";
+        RowMapper<Item> rowMapper=new BeanPropertyRowMapper<Item>(Item.class);
+        List<Integer> params = new ArrayList<>();
+        params.add(index);
+        params.add(currentCount);
+        List<Item> items = jdbcTemplate.query(sql, rowMapper,index,currentCount);
+        return items;
+    }
+    /*条件查询商品*/
+    public List<Item> findByKey(int index, int currentCount, String key) {
+        String sql = "select * from sock where name like '%"+key+"%' order by name asc limit ?,?";
         RowMapper<Item> rowMapper=new BeanPropertyRowMapper<Item>(Item.class);
         List<Integer> params = new ArrayList<>();
         params.add(index);
@@ -100,4 +116,6 @@ public class AdminDao {
         String sql = "insert into sock_tag value(?,?)";
         int row = jdbcTemplate.update(sql, id,tagid);
     }
+
+
 }

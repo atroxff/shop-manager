@@ -10,48 +10,52 @@ function deleteProduct(pid) {
 //查找商品
 function searchProduct(){
     var key = document.getElementById("searchKey").value;
-    var type=document.getElementById("searchType").value;//搜索类型 0按编号 1按名称 2按分类
+    //var type=document.getElementById("searchType").value;//搜索类型 0按编号 1按名称 2按分类
     var pagenumStr = "";
     var pagesizeStr = "";
 
     //校验
-    if(key==""){
-        return;
-    }
-    console.log("searchKey:"+key+"searchtype:"+type);
-    location.href="./product.do?key="+key+"&type="+type+"&pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
+    // if(key==""){
+    //     return;
+    // }
+    console.log("searchKey:"+key);
+    location.href="./product.do?key="+key+"&pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
 };
 //上一页
 function pageUp() {
     var key = document.getElementById("searchKey").value;
-    var type=document.getElementById("searchType").value;//搜索类型 0按编号 1按名称 2按分类
+    // var type=document.getElementById("searchType").value;//搜索类型 0按编号 1按名称 2按分类
     var pagenumStr =document.getElementById("pagenumStr").value;
     pagenumStr=parseInt(pagenumStr)-1<1?1:parseInt(pagenumStr)-1;
     var pagesizeStr = "";
     //console.log("searchKey:"+key+"searchtype:"+type+"pagenumStr:"+pagenumStr);
     if(key==""){
+        console.log("no key");
         location.href="./product.do?pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
     }else{
-        location.href="./product.do?key="+key+"&type="+type+"&pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
+        console.log(key);
+        location.href="./product.do?key="+key+"&pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
     }
 };
 //下一页
 function pageDown(totalpage) {
     var key = document.getElementById("searchKey").value;
-    var type=document.getElementById("searchType").value;//搜索类型 0按编号 1按名称 2按分类
+    // var type=document.getElementById("searchType").value;//搜索类型 0按编号 1按名称 2按分类
     var pagenumStr =document.getElementById("pagenumStr").value;
     pagenumStr=parseInt(pagenumStr)+1>totalpage?totalpage:parseInt(pagenumStr)+1;
     var pagesizeStr = "";
     //console.log("searchKey:"+key+"searchtype:"+type+"pagenumStr:"+pagenumStr);
     if(key==""){
+        console.log("no key");
         location.href="./product.do?pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
     }else{
-        location.href="./product.do?key="+key+"&type="+type+"&pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
+        console.log(key);
+        location.href="./product.do?key="+key+"&pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
     }
 };
 
 function toPageNum(totalpage) {
-    //var key = document.getElementById("searchKey").value;
+    key = document.getElementById("searchKey").value;
     //var type=document.getElementById("searchType").value;//搜索类型 0按编号 1按名称 2按分类
     var pagenumStr =document.getElementById("pagenumStr").value;
     pagenumStr=parseInt(pagenumStr);
@@ -60,6 +64,11 @@ function toPageNum(totalpage) {
     }
     var pagesizeStr = "";
 
-    //console.log("searchKey:"+key+"searchtype:"+type+"pagenumStr:"+pagenumStr);
-    location.href="./product.do?pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
+    if(key==""||key==null){
+        console.log("no key");
+        location.href="./product.do?pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
+    }else{
+        console.log(key);
+        location.href="./product.do?key="+key+"&pagenumStr="+pagenumStr+"&pagesizeStr="+pagesizeStr;
+    }
 };
