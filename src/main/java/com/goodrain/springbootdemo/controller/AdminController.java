@@ -49,12 +49,7 @@ public class AdminController {
     @GetMapping("/dbdata")
     public @ResponseBody
     Object dbdata(Model model) {
-//        DBConnPool instance = DBConnPool.getInstance();
-//        try {
-//            Connection conn = instance.getConnection();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+
         String sql = "select * from sock";
         RowMapper<Item> rowMapper = new BeanPropertyRowMapper<Item>(Item.class);
         List<Item> items = jdbcTemplate.query(sql, rowMapper);
