@@ -21,14 +21,17 @@ function validateAndSubmit(){
     if(price==""){
         document.getElementById("price_tip").innerHTML="商品价格不能为空";
     }
+    if(count==""){
+        document.getElementById("count_tip").innerHTML="库存不能为空";
+    }
     if(image_1==""){
-        document.getElementById("pimage_pic1_tip").innerHTML="商品图片1不能为空";
+        document.getElementById("pimage_pic_tip").innerHTML="商品图片1不能为空";
     }
     if(image_2==""){
         document.getElementById("pimage_pic2_tip").innerHTML="商品图片2不能为空";
     }
-    if(name==""||price==""||image_1==""||image_2==""){
-        console.log("校验失败");
+    if(name==""||price==""||count==""||image_1==""||image_2==""){
+        console.log("校验失败：参数为空");
         return;
     }
 
@@ -45,7 +48,7 @@ function validateAndSubmit(){
         flag=false;
     }
     if(!flag){
-        console.log("校验失败");
+        console.log("校验失败：格式不正确");
         return;
     }
 

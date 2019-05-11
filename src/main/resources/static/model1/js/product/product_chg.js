@@ -30,7 +30,7 @@ function validateAndSubmit(){
     //     document.getElementById("pimage_pic2_tip").innerHTML="商品图片2不能为空";
     // }
     if(name==""||price==""){
-        console.log("校验失败");
+        console.log("校验失败：参数为空");
         return;
     }
 
@@ -47,7 +47,7 @@ function validateAndSubmit(){
         flag=false;
     }
     if(!flag){
-        console.log("校验失败");
+        console.log("校验失败：格式不正确");
         return;
     }
 
