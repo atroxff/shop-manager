@@ -150,6 +150,7 @@ public class AdminController {
         String path = "";
         try {
             File file = ResourceUtils.getFile("classpath:static"+File.separator+"item");
+
             if (!file.exists()) {
                 file.mkdirs();
             }
@@ -159,9 +160,7 @@ public class AdminController {
         }
         String newFileName1= image_1.getOriginalFilename();
         String newFileName2= image_2.getOriginalFilename();
-        if(newFileName1.equals(newFileName2)){//同名文件+"_copy"
-            newFileName2=newFileName1.substring(0,newFileName1.lastIndexOf("."))+"_copy"+newFileName1.substring(newFileName1.lastIndexOf("."));
-        }
+
         File newFile1=new File(path+File.separator+newFileName1);
         File newFile2=new File(path+File.separator+newFileName2);
         //将内存数据写入磁盘,创建虚拟目录的图片

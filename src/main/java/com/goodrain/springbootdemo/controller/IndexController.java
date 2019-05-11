@@ -30,6 +30,8 @@ public class IndexController {
         String path = "src";
         try {
             File file = ResourceUtils.getFile("classpath:static"+File.separator+"item");
+//            file.getParentFile().getParentFile();
+//            ResourceUtils.getURL();
             path=file.getPath();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
