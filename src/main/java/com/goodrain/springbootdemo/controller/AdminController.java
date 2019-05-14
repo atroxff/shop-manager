@@ -209,41 +209,52 @@ public class AdminController {
     @RequestMapping(value = "/product/update.do", method = RequestMethod.POST)
     public String updateProduct(Model model, String sock_id, Item product, MultipartFile image_1, MultipartFile image_2, String pimage_pic1_text, String pimage_pic2_text) {
 
-
-        //上传图片校验
-        if (image_1 == null || image_2 == null) {
-            return "model1/404";
-        }
-
-        //调用service保存商品
-        adminService.deleteProduct(sock_id);
-
+        String url1="";
+        String url2="";
         String path = "";
         try {
-            File file = ResourceUtils.getFile("classpath:static"+File.separator+"item");
-            if (!file.exists()) {
-                file.mkdirs();
+            File picfile = ResourceUtils.getFile("classpath:static"+File.separator+"item");
+            if (!picfile.exists()) {
+                picfile.mkdirs();
             }
-            path=file.getPath();
+            path=picfile.getPath();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        String newFileName1= image_1.getOriginalFilename();
-        String newFileName2= image_2.getOriginalFilename();
 
-        File newFile1=new File(path+File.separator+newFileName1);
-        File newFile2=new File(path+File.separator+newFileName2);
-        //将内存数据写入磁盘,创建虚拟目录的图片
-        try {
-            image_1.transferTo(newFile1);
-            image_2.transferTo(newFile2);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("上传失败");
+        //上传图片校验
+        //为空保持默认
+        if (image_1 == null || image_1.isEmpty()) {
+            url1=pimage_pic1_text;
+        }else{
+            //更新图片
+            String newFileName1= image_1.getOriginalFilename();
+            File newFile1=new File(path+File.separator+newFileName1);
+            url1="item/"+newFileName1;
+            try {
+                image_1.transferTo(newFile1);
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("上传失败");
+            }
         }
 
-        String url1="item/"+newFileName1;
-        String url2="item/"+newFileName2;
+        if (image_2 == null||image_1.isEmpty()) {
+            url2=pimage_pic2_text;
+        }else{
+            //更新图片
+            String newFileName2= image_2.getOriginalFilename();
+            url2="item/"+newFileName2;
+            File newFile2=new File(path+File.separator+newFileName2);
+            try {
+                image_2.transferTo(newFile2);
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("上传失败");
+            }
+        }
+        //调用service保存商品
+        adminService.deleteProduct(sock_id);
         //准备商品图片
         product.setImage_url_1(url1);
         product.setImage_url_2(url2);
