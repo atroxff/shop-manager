@@ -50,7 +50,7 @@ public class AppConfig {
                 //SpringBoot已经做好了静态资源映射
                 registry.addInterceptor(new LoginHandlerInterceptor())
                         .addPathPatterns("/**")
-                        .excludePathPatterns("/index.html","/","/admin/login.do");
+                        .excludePathPatterns("/index.html","/","/admin/login.do","/admin/logout.do");
             }
 
             //配置自定义静态资源路径

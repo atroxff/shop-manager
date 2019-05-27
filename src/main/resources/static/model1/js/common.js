@@ -3,10 +3,10 @@ function logout(){
     console.debug(src);
     if(confirm("您确认要退出么")){
         if(src.split('/').length==3) {
-            location.href = "./logout.do";
+            location.href = "./admin/logout.do";
         }
         else{
-            location.href = "../logout.do";
+            location.href = "../admin/logout.do";
         }
     }
 }
